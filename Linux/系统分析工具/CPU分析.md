@@ -1,7 +1,7 @@
 CPU相关的常用分析工具
 ==================
 
-1. top
+1. top (通用)
 
 可以实时动态的查看系统运行情况, 监测系统性能和运行信息，常用可选参数如下:
 
@@ -44,4 +44,32 @@ ps -A -o stat,ppid,pid,cmd | grep -e '^[Zz]'
 
 状态为 z或者Z的进程为僵尸进程
 
+2. strace (分析程序)
 
+strace可以跟踪到一个进程产生的系统调用，包含参数、返回值、执行消耗的时间。
+
+strace的常用的选项以及选项对应的含义如下：
+ 
+* -c 统计每一系统调用的所执行的时间,次数和出错的次数等
+* -f 跟踪由fork调用所产生的子进程
+* -t 在输出中的每一行前加上时间信息
+* -tt 在输出中的每一行前加上时间信息（微妙级） 
+* -T 显示每一调用所耗的时间
+* -e trace=set 只跟踪指定的系统调用。例如:-e trace=open,close,read,write表示只跟踪这四个系统调用。默认的为set=all
+* -e trace=file 只跟踪有关文件操作的系统调用
+* -e trace=process 只跟踪有关进程控制的系统调用
+* -e trace=network 跟踪与网络有关的所有系统调用
+* -e strace=signal 跟踪所有与系统信号有关的 系统调用
+* -e trace=ipc 跟踪所有与进程通讯有关的系统调用
+* -o filename 将strace的输出写入文件filename 
+* -p pid 跟踪指定的进程pid
+
+实例：
+
+###strace cat /dev/null
+
+每一行都是一条系统调用，等号左边是系统调用的函数名及其参数，右边是该调用的返回值。
+
+###strace -f -o loadconfigure-strace.txt -e execve ./test
+
+查看test脚本里面执行的程序里面系统调用ececve的调用情况
