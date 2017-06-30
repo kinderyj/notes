@@ -126,7 +126,7 @@ cpu：
 
 - id：CPU处在空闲状态时间百分比
 
-3. perf(性能调优)
+4. perf(性能调优)
 ------------
 
 perf是Linux的性能调优工具。perf工具的常用命令包括top，record，report等。
