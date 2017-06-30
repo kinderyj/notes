@@ -76,7 +76,7 @@ strace -f -o loadconfigure-strace.txt -e execve ./test
 
 查看test脚本里面执行的程序里面系统调用ececve的调用情况
 
-3. vmstate(性能分析)
+3. vmstat(性能分析)
 vmstat是一个很全面的性能分析工具，可以观察到系统的进程状态、内存使用、虚拟内存使用、磁盘的 IO、中断、上下问切换、CPU使用等。
 
 vmstat的输出如下：
