@@ -2,6 +2,7 @@ CPU相关的常用分析工具
 ==================
 
 1. top (通用)
+------------
 
 可以实时动态的查看系统运行情况, 监测系统性能和运行信息，常用可选参数如下:
 
@@ -45,6 +46,7 @@ ps -A -o stat,ppid,pid,cmd | grep -e '^[Zz]'
 状态为 z或者Z的进程为僵尸进程
 
 2. strace (分析程序)
+------------
 
 strace可以跟踪到一个进程产生的系统调用，包含参数、返回值、执行消耗的时间。
 
@@ -66,10 +68,10 @@ strace的常用的选项以及选项对应的含义如下：
 
 实例：
 
-###strace cat /dev/null
+strace cat /dev/null
 
 每一行都是一条系统调用，等号左边是系统调用的函数名及其参数，右边是该调用的返回值。
 
-###strace -f -o loadconfigure-strace.txt -e execve ./test
+strace -f -o loadconfigure-strace.txt -e execve ./test
 
 查看test脚本里面执行的程序里面系统调用ececve的调用情况
