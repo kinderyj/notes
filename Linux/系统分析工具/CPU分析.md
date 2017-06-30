@@ -77,6 +77,8 @@ strace -f -o loadconfigure-strace.txt -e execve ./test
 查看test脚本里面执行的程序里面系统调用ececve的调用情况
 
 3. vmstat(性能分析)
+------------
+
 vmstat是一个很全面的性能分析工具，可以观察到系统的进程状态、内存使用、虚拟内存使用、磁盘的 IO、中断、上下问切换、CPU使用等。
 
 vmstat的输出如下：
@@ -123,3 +125,16 @@ cpu：
 - wa：IO等待消耗的CPU时间百分比
 
 - id：CPU处在空闲状态时间百分比
+
+3. perf(性能调优)
+------------
+
+perf是Linux的性能调优工具。perf工具的常用命令包括top，record，report等。
+
+perf top命令用来显示程序运行的整体状况。该命令主要用来观察整个系统当前的状态，比如可以通过查看该命令的输出来查看当前系统最耗时的内核函数或某个用户进程
+
+perf record命令则用来记录指定事件在程序运行过程中的信息，而Perf report命令则用来报告基于前面record命令记录的事件信息生成的程序运行状况报告。
+
+通常用命令perf record -g -p pid将进程在命令运行期间的各项指令运行所占CPU的比例存在perf.data里面（-g表示记录函数之间的调用关系）, 
+
+再用perf report --call-graph --stdio将刚刚的统计结果展示出来。
